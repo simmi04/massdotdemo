@@ -295,11 +295,8 @@ public class MassDotServiceImpl implements MassDotService {
 							
 							if (boardInfo.isTimepoint()) {
 								boardInfoMap.put(scheduleId, boardInfo);
-								System.out.println(boardInfo.getTrain() + " :in");
 								count++;
 							}
-							
-							System.out.println(boardInfo.getTrain() + " :out");
 						}	
 					}
 					
