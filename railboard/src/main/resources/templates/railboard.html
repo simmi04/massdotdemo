@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="60" >
+    <title>MASSDOTDEMO</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+      
+	<script>
+		var weekdays = new Array(7);
+		weekdays[0] = "Sunday";
+		weekdays[1] = "Monday";
+		weekdays[2] = "Tuesday";
+		weekdays[3] = "Wednesday";
+		weekdays[4] = "Thursday";
+		weekdays[5] = "Friday";
+		weekdays[6] = "Saturday";
+	
+		function startTime() {
+		    var today = new Date();
+		    var h = today.getHours();
+		    var m = today.getMinutes();
+		    var s = today.getSeconds();
+		    m = checkTime(m);
+		    s = checkTime(s);
+		    document.getElementById('timeonly').innerHTML =
+		    h + ":" + m + ":" + s;
+		    
+	        month = '' + (today.getMonth() + 1),
+	        day = '' + today.getDate(),
+	        year = today.getFullYear();
+
+		    if (month.length < 2) month = '0' + month;
+		    if (day.length < 2) day = '0' + day;
+	
+		    weekday_value = today.getDay();
+		    document.getElementById('currdaystr').innerHTML = weekdays[weekday_value];
+		    document.getElementById('currdate').innerHTML = [month, day, year].join('-');
+		    
+		    var t = setTimeout(startTime, 500);
+		}
+		
+		function checkTime(i) {
+		    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
+		
+	</script>  
+
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+		    box-sizing: border-box;
+		}
+		
+		/* Create three equal columns that floats next to each other */
+		.column {
+		    float: left;
+		    width: 200;
+		    padding: 10px;
+		}
+		
+		/* Clear floats after the columns */
+		.row:after {
+		    content: "";
+		    display: table;
+		    clear: both;
+		}
+	</style>
+		
+	<style>
+		#trains {
+		    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		    border-collapse: collapse;
+		    width: 50%;
+		}
+		
+		#train tbody {
+			display: block;
+			width: 100%;
+			overflow-y: auto;
+			height: 600px;
+		}
+		
+		#train thead {
+		   	display: block;
+		}
+		
+		#trains td, #trains th {
+		    border: 1px solid #ddd;
+		    padding: 8px;
+		}
+		
+		#trains tr:nth-child(even){background-color: #f2f2f2;}
+		
+		#trains tr:hover {background-color: #ddd;}
+		
+		#trains th {
+		    padding-top: 12px;
+		    padding-bottom: 12px;
+		    text-align: left;
+		    background-color: #4CAF50;
+		    color: white;
+		}
+	</style>
+    
+   </head>
+   
+   <body  onload="startTime()">
+   	
+	<div class="row">
+	  	<div class="column">
+	  		<p style="color:orange" id="currdaystr"></p>
+	  		<p style="color:orange" id="currdate"></p>
+	  	</div>
+	  	<div class="column">
+	  		<p><b th:utext="${station}"></b></p>
+	  	</div>
+	  	<div class="column">
+	  		<p style="color:orange">CURRENT TIME</p>
+	  		<p style="color:orange" id="timeonly"></p>
+	  	</div>  	
+	</div>
+
+	<table id="trains">
+	  	<tr>
+	  		<th:block th:each="head : ${boardtableheader}">
+		  		<th th:text="${head}"></th>
+			</th:block>
+	  	</tr>
+	  	<tr th:each="colinfo : ${boardtableinfo}">
+	  		<th:block th:each="colstring : ${colinfo}">
+				<td th:text="${colstring}"></td>
+			</th:block>
+		</tr>
+	</table>
+	
+   </body>
+    
+</html>

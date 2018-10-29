@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <title>MASSDOTDEMO</title>
+   </head>
+<body>
+
+<div class="container">
+  <h2>Welcome to QUICK DEMO Train Schedule</h2>
+  <img class="img-responsive" src="/images/800px-North_Station_departure_board.JPG" alt="Board" width="530" height="345">
+  <p></p>
+  <p><b>Choose Station:</b></p>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Station
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="north">North</a></li> <!-- stations are to be retrieved from api-v3 by the controller and fed to the dropdown list dynamically -->   
+      <li><a href="south">South</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
